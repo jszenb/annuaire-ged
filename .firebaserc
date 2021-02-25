@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "annuaire-ged": {
+      "hosting": {
+        "annuaire-ged": [
+          "annuaire-ged"
+        ]
+      }
+    }
+  }
+}

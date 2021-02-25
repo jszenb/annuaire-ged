@@ -16,16 +16,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'annuaire-ged'`, () => {
+  it(`should have as title 'annuaire'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('annuaire-ged');
+    expect(app.title).toEqual('annuaire');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('annuaire-ged app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('annuaire app is running!');
   });
 });
