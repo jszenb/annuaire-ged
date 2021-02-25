@@ -9,16 +9,17 @@ import { EntreeService } from './entree.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  entrees: Entree[];
+  entrees: Entree[] ;
   error = '';
   success = '';
-  entree = new Entree('','');
+  entree = new Entree;
         
   constructor(private entreeService: EntreeService) {
   }
         
   ngOnInit() {
     this.getEntrees();
+    
     //console.log(this.entree.nom);
     //console.log(this.entree.prenom);
   }
