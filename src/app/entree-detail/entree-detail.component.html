@@ -1,0 +1,17 @@
+<!-- entree-detail.component.html -->
+<div *ngIf="entree"  id="theDetails">
+	<h4>{{entree.nom | uppercase}}, {{entree.prenom}} (détails)</h4>
+	<ul class="entrees-details">
+		<li><span class="font-weight-bold">id :</span> {{entree.id}}
+		<li><span class="font-weight-bold">Laboratoire de rattachement :</span> {{entree.laboratoire}}	
+		<li><span class="font-weight-bold">E-mail :</span> {{entree.email}}
+		<li><span class="font-weight-bold">Téléphone :</span> {{entree.telephone}}	
+		<li><span class="font-weight-bold">Commentaire : </span>
+			<div class="card">
+				<div class="card-body">
+					{{entree.commentaire}}
+				</div>
+			</div>
+		</li>
+	</ul>
+</div>
