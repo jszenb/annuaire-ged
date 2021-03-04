@@ -28,6 +28,7 @@ export class AppComponent implements OnInit {
     this.entreeService.getAll().subscribe(
       (res: Entree[]) => {
         this.entrees = res;
+        this.sortBy( 'nom');
       },
       (err) => {
         this.error = err;
@@ -44,7 +45,7 @@ export class AppComponent implements OnInit {
         (res: Entree[]) => {
           // Update the list of entrees
           this.entrees = res;
-
+          this.sortBy( 'nom');
           // Inform the user
           this.success = 'Created successfully';
 
@@ -63,6 +64,7 @@ export class AppComponent implements OnInit {
       .subscribe(
         (res) => {
           this.entrees = res;
+          this.sortBy( 'nom');
           this.success = 'Updated successfully';
         },
         (err) => this.error = err
@@ -77,10 +79,15 @@ export class AppComponent implements OnInit {
       .subscribe(
         (res: Entree[]) => {
           this.entrees = res;
+          this.sortBy( 'nom');
           this.success = 'Deleted successfully';
         },
         (err) => this.error = err
       );
+  }
+  
+  sortBy(prop: string) {
+    return this.entrees.sort((a, b) => a[prop] > b[prop] ? 1 : a[prop] === b[prop] ? 0 : -1);
   }
 
 }

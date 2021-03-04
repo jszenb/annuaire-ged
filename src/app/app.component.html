@@ -5,7 +5,7 @@
   <h2>Liste des entrées</h2>
 
   <div class="list-group col-12">
-    <div *ngFor="let item of entrees;let i = index;" class="row">
+    <div *ngFor="let item of entrees ;let i = index;" class="row">
       <div class="col-4">
         <input type="text"
                [(ngModel)]="entrees[i].nom"
