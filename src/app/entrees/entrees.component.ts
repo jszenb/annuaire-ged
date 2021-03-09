@@ -58,11 +58,12 @@ export class EntreesComponent implements OnInit {
       );
   }
 
-  updateEntree(unNom, unPrenom, unId) {
+  //updateEntree(unNom, unPrenom, unTelephone, unEmail, unId, unLaboratoire, unCommentaire) {
+  updateEntree(f) {
     this.success = '';
     this.error = '';
-
-    this.entreeService.update({ nom: unNom.value, prenom: unPrenom.value, id: +unId })
+    
+    this.entreeService.update(this.selectedEntree)
       .subscribe(
         (res) => {
           this.entrees = res;
@@ -76,7 +77,7 @@ export class EntreesComponent implements OnInit {
   deleteEntree(id) {
     this.success = '';
     this.error   = '';
-    
+    if (confirm('Are you sure you want to delete this?')){
     this.entreeService.delete(+id)
       .subscribe(
         (res: Entree[]) => {
@@ -86,7 +87,9 @@ export class EntreesComponent implements OnInit {
         },
         (err) => this.error = err
       );
+      }
   }
+  
   
   // Tri du tableau des entrées
   sortBy(prop: string) {

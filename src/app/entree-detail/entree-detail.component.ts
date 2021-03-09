@@ -12,9 +12,12 @@ import { Entree } from '../entree';
 
 export class EntreeDetailComponent implements OnInit {
   @Input() entree: Entree; 
+
   constructor() { }
 
   ngOnInit(): void {
   }
+  
+   
 
 }

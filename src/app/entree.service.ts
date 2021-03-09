@@ -41,6 +41,10 @@ export class EntreeService {
         if (theEntree) {
           theEntree['prenom'] = entree['prenom'];
           theEntree['nom'] = entree['nom'];
+          theEntree['telephone'] = entree['telephone'];
+          theEntree['email'] = entree['email'];
+          theEntree['laboratoire'] = entree['laboratoire'];
+          theEntree['commentaire'] = entree['commentaire'];
         }
         return this.entrees;
       }),

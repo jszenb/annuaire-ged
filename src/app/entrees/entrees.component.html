@@ -8,15 +8,124 @@
 	<div class="row col-12">
 		<div class="col-6">
 			<ul class="entrees">
-				<li *ngFor="let entree of entrees" 
-					(click)="onSelect(entree)"
-					[class.selected]="entree === selectedEntree">
-					{{entree.nom}}, {{entree.prenom}}
-				</li>
+               <li *ngFor="let entree of entrees" 
+                     (click)="onSelect(entree)"
+                     [class.selected]="entree === selectedEntree">
+                     {{entree.nom}}, {{entree.prenom}}
+               </li>
 			</ul>
 		</div>
 		<div class="col-6" >
-			<app-entree-detail [entree]="selectedEntree"></app-entree-detail>
+            <div *ngIf="selectedEntree"  id="theDetails">
+                <h4>{{selectedEntree.nom | uppercase}}, {{selectedEntree.prenom}} (détails)</h4>
+
+                <div id="theForm">
+                    <form #f="ngForm" name="theForm" (submit)="updateEntree(f)">
+                    <div class="row">
+                        <div class="col">
+                                <label>Nom</label>
+                                <input type="text"
+                                    class="form-control"
+                                    name="nom"
+                                    #entreeNom="ngModel"
+                                    [(ngModel)]="selectedEntree.nom"
+                                    required
+                                    placeholder="Saisissez ici le nom"
+                                    pattern="^[A-Za-zÀ-ÖØ-öø-ÿ][A-Za-zÀ-ÖØ-öø-ÿ- ]+$"
+                                    [ngClass]="{ 'is-invalid': entreeNom.touched && entreeNom.invalid }">
+                                <div class="help-block danger" *ngIf="entreeNom.errors?.required && entreeNom.touched">
+                                    Le nom est obligatoire
+                                </div>
+                                <div class="help-block danger" *ngIf="entreeNom.errors?.pattern && entreeNom.touched">
+                                    Un nom est composé de caractères alphanumériques
+                                </div>
+                                    
+                        </div>
+                        <div class="col">
+                                <label>Prénom</label>
+                                <input type="text"
+                                    class="form-control"
+                                    name="prenom"
+                                    required
+                                    placeholder="Saisissez ici le prénom"
+                                    #entreePrenom="ngModel"
+                                    [(ngModel)]="selectedEntree.prenom"
+                                    pattern="^[A-Za-zÀ-ÖØ-öø-ÿ- ]+$">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">	
+                                <label>Laboratoire de rattachement</label>
+                                <input type="text"
+                                    class="form-control"
+                                    name="laboratoire"
+                                    placeholder="Saisissez ici le laboratoire"
+                                    #entreeLaboratoire="ngModel"
+                                    [(ngModel)]="selectedEntree.laboratoire">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                                <label>E-mail</label>
+                                <input type="email"
+                                    class="form-control"
+                                    name="email"
+                                    required
+                                    placeholder="email@adresse.ext"
+                                    #entreeEmail="ngModel"
+                                    [(ngModel)]="selectedEntree.email"
+                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                    [ngClass]="{ 'is-invalid': entreeEmail.touched && entreeEmail.invalid }">
+                                <div class="help-block danger" *ngIf="entreeEmail.errors?.required && entreeEmail.touched">
+                                    L'e-mail est obligatoire
+                                </div>
+                                <div class="help-block danger" *ngIf="entreeEmail.errors?.pattern && entreeEmail.touched">
+                                    Le format de l'e-mail est invalide
+                                </div>
+                        </div>
+                        <div class="col">
+                                <label>Téléphone</label>
+                                <input type="text"
+                                    class="form-control"
+                                    name="telephone"
+                                    required
+                                    placeholder="Saisissez ici le téléphone"
+                                    #entreeTelephone="ngModel"
+                                    [(ngModel)]="selectedEntree.telephone"
+                                    pattern="[0-9.+]+$"
+                                    [ngClass]="{ 'is-invalid': entreeTelephone.touched && entreeTelephone.invalid }">
+                                <div class="help-block danger" *ngIf="entreeTelephone.errors?.required && entreeTelephone.touched">
+                                    Le téléphone est obligatoire
+                                </div>
+                                <div class="help-block danger" *ngIf="entreeTelephone.errors?.pattern && entreeTelephone.touched">
+                                    Le format du téléphone est invalide
+                                </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label>Commentaire</label>
+                            <textarea class="form-control"
+                                    name="commentaire"
+                                    required
+                                    placeholder="Saisissez ici le commentaire"
+                                    #entreeCommentaire="ngModel"
+                                    [(ngModel)]="selectedEntree.commentaire"
+                                    rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <button
+                        class="btn btn-success"
+                        [disabled]="f.invalid">Valider 
+                    </button>
+                    <input type="button"
+                            value="Effacer"
+                            class="btn btn-danger btn-sm"
+                            (click)="deleteEntree(selectedEntree.id)">
+                    </form>
+                </div>
+            </div>
 		</div>
 	</div>
 </div>

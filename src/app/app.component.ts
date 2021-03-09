@@ -9,7 +9,7 @@ import { EntreeService } from './entree.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-
+  title = "Annuaire du GED"; 
   constructor() { }
 
   ngOnInit(): void {
